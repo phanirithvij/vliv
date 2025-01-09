@@ -124,13 +124,13 @@ BEGIN
     END
     POPUP "&Tools"
     BEGIN
-	MENUITEM "Clear Recent File List"       ID_TOOLS_CLEAR
-	MENUITEM "Fullscreen\tEnter"            ID_TOOLS_FULLSCREEN
+	MENUITEM "Clear Recent File List",      ID_TOOLS_CLEAR
+	MENUITEM "Fullscreen\tEnter",           ID_TOOLS_FULLSCREEN
         MENUITEM SEPARATOR
-	MENUITEM "Register..."                  ID_TOOLS_REGISTER
+	MENUITEM "Register...",                 ID_TOOLS_REGISTER
         MENUITEM SEPARATOR
-	MENUITEM "Export Current View as BMP..." ID_TOOLS_EXPORTBMP, GRAYED
-	MENUITEM "Copy Current View to Clipboard\tCtrl+C" ID_TOOLS_CLIPBOARD, GRAYED
+	MENUITEM "Export Current View as BMP...", ID_TOOLS_EXPORTBMP, GRAYED
+	MENUITEM "Copy Current View to Clipboard\tCtrl+C", ID_TOOLS_CLIPBOARD, GRAYED
     END
     POPUP "&Help"
     BEGIN
