@@ -1,63 +1,38 @@
 CC  = cl
 RC  = rc
-LD  = link
 
-#DEBUG=/Od /Zi
-#LDDEBUG=/debug
+#DEBUG = -O0 -g
+#LDDEBUG = -g
+DEBUG = -O2
+VERSION = 2.7
+VERSIONSHORT = 270
 
-DEBUG=/Ox 
+CFLAGS = -Wall $(DEBUG) -D_CRT_SECURE_NO_DEPRECATE -DWIN32 -DWINDOWS -I.
+LDFLAGS = $(LDDEBUG) -mwindows -Wl,--major-image-version,2 -Wl,--minor-image-version,7
+# -Wl,--enable-mingw-full32 -Wl,--large-address-aware ????
 
-VERSION=2.7
-VERSIONSHORT=270
+# strsafe.h is in mingw64 headers
+SYSLIBS = -lwininet -luser32 -lgdi32 -lkernel32 -lcomctl32 -lcomdlg32 -lshlwapi \
+          -lshell32 -ladvapi32 -lversion -lmsimg32 -lwinmm
 
-CFLAGS = /nologo /W3 $(DEBUG) /D_CRT_SECURE_NO_DEPRECATE /DWIN32 /DWINDOWS /I. 
-LDFLAGS = $(LDDEBUG) /SUBSYSTEM:WINDOWS /nodefaultlib:libc /VERSION:$(VERSION) /LARGEADDRESSAWARE
-
-SYSLIBS = wininet.lib user32.lib gdi32.lib kernel32.lib comctl32.lib comdlg32.lib shlwapi.lib \
-	  shell32.lib advapi32.lib version.lib strsafe.lib msimg32.lib winmm.lib
-
-OBJECTS = vliv.obj urlctrl.obj dialogs.obj handlers.obj bitmap.obj recent.obj window.obj tilemgr.obj rawinput.obj
+OBJECTS = vliv.o urlctrl.o dialogs.o handlers.o bitmap.o recent.o window.o tilemgr.o rawinput.o
 
 all: vliv.exe
 
-vliv.obj : vliv.c vliv.h
-	$(CC) $(CFLAGS) /c vliv.c
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
-urlctrl.obj : urlctrl.c
-	$(CC) $(CFLAGS) /c urlctrl.c
+vliv-res.o: resources/vliv.rc
+	$(RC) -i $< -o $@
 
-dialogs.obj : dialogs.c
-	$(CC) $(CFLAGS) /c dialogs.c
-
-recent.obj : recent.c
-	$(CC) $(CFLAGS) /c recent.c
-
-bitmap.obj : bitmap.c
-	$(CC) $(CFLAGS) /c bitmap.c
-
-window.obj : window.c
-	$(CC) $(CFLAGS) /c window.c
-
-handlers.obj : handlers.c
-	$(CC) $(CFLAGS) /c handlers.c
-
-tilemgr.obj : tilemgr.c
-	$(CC) $(CFLAGS) /c tilemgr.c
-
-rawinput.obj : rawinput.c
-	$(CC) $(CFLAGS) /c rawinput.c
-
-vliv.res : resources\vliv.rc
-	$(RC) /fo vliv.res resources\vliv.rc
-
-vliv.exe : $(OBJECTS) vliv.res
-	$(LD) /OUT:vliv.exe $(LDFLAGS) $(OBJECTS) vliv.res $(SYSLIBS)
+vliv.exe: $(OBJECTS) vliv-res.o
+	$(CC) -o $@ $(OBJECTS) vliv-res.o $(LDFLAGS) $(SYSLIBS)
 
 languages: fra.dll
 
 fra.dll: resources/fra.rc
-	$(RC) /fo fra.res resources/fra.rc
-	$(LD) /dll /machine:x86 /noentry /out:fra.dll fra.res
+	$(RC) -i $< -o fra.o
+	$(CC) -shared -o $@ fra.o -Wl,--subsystem,windows
 
 clean:
-	del /q *.pdb *.ilk *.obj vliv.exe *~ *.res
+	rm -f *.o *.exe *.dll *.res *~
