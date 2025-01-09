@@ -1,22 +1,21 @@
 CC  = cl
-LD  = link
 
-VLIVDIR = ..\..
+VLIVDIR = ../..
 
-DEBUG = /Ox 
+DEBUG = -O2
 
-CFLAGS = /nologo /W3 $(DEBUG) /D_CRT_SECURE_NO_DEPRECATE /DWIN32 /DWINDOWS /I. /I$(VLIVDIR)
+CFLAGS = -Wall $(DEBUG) -D_CRT_SECURE_NO_DEPRECATE -DWIN32 -DWINDOWS -I. -I$(VLIVDIR)
 
-SYSLIBS = wininet.lib user32.lib gdi32.lib kernel32.lib comctl32.lib comdlg32.lib shlwapi.lib \
-	  shell32.lib advapi32.lib version.lib strsafe.lib
+SYSLIBS = -lwininet -luser32 -lgdi32 -lkernel32 -lcomctl32 -lcomdlg32 -lshlwapi \
+	  -lshell32 -ladvapi32 -lversion
 
 all: lyapunov.dll
 
-lyapunov.obj : lyapunov.c lyapunov.h
-	$(CC) $(CFLAGS) /c lyapunov.c
+lyapunov.o : lyapunov.c lyapunov.h
+	$(CC) $(CFLAGS) -c lyapunov.c
 
-lyapunov.dll: lyapunov.obj
-	$(LD) /dll /out:lyapunov.dll lyapunov.obj
+lyapunov.dll: lyapunov.o
+	$(CC) -o $@ lyapunov.o
 
 clean:
-	del lyapunov.obj lyapunov.dll
+	rm lyapunov.o lyapunov.dll

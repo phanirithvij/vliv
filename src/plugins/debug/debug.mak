@@ -1,21 +1,20 @@
 CC  = cl
-LD  = link
 
-VLIVDIR = ..\..
+VLIVDIR = ../..
 
-DEBUG=/Ox 
+DEBUG = -O2
 
-CFLAGS = /nologo /W3 $(DEBUG) /D_CRT_SECURE_NO_DEPRECATE /DWIN32 /DWINDOWS /I. /I$(VLIVDIR)
+CFLAGS = -Wall $(DEBUG) -D_CRT_SECURE_NO_DEPRECATE -DWIN32 -DWINDOWS -I. -I$(VLIVDIR)
 
 SYSLIBS = 
 
 all: debug.dll
 
-debug.obj : debug.c debug.h
-	$(CC) $(CFLAGS) /c debug.c
+debug.o : debug.c debug.h
+	$(CC) $(CFLAGS) -c debug.c
 
-debug.dll: debug.obj
-	$(LD) /dll /out:debug.dll debug.obj
+debug.dll: debug.o
+	$(CC) -shared -o $@ debug.o
 
 clean:
-	del debug.obj debug.dll
+	rm debug.o debug.dll

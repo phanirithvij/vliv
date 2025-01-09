@@ -1,22 +1,21 @@
-CC  = cl
-LD  = link
+CC = cl
 
-VLIVDIR = ..\..
+VLIVDIR = ../..
 
-DEBUG=/Ox 
+DEBUG = -O2
 
-CFLAGS = /nologo /W3 $(DEBUG) /D_CRT_SECURE_NO_DEPRECATE /DWIN32 /DWINDOWS /I. /I$(VLIVDIR)
+CFLAGS = -Wall $(DEBUG) -D_CRT_SECURE_NO_DEPRECATE -DWIN32 -DWINDOWS -I. -I$(VLIVDIR)
 
-SYSLIBS = wininet.lib user32.lib gdi32.lib kernel32.lib comctl32.lib comdlg32.lib shlwapi.lib \
-	  shell32.lib advapi32.lib version.lib strsafe.lib
+SYSLIBS = -lwininet -luser32 -lgdi32 -lkernel32 -lcomctl32 -lcomdlg32 -lshlwapi \
+	  -lshell32 -ladvapi32 -lversion
 
 all: newton.dll
 
-newton.obj : newton.c newton.h
-	$(CC) $(CFLAGS) /c newton.c
+newton.o : newton.c newton.h
+	$(CC) $(CFLAGS) -c newton.c
 
-newton.dll: newton.obj
-	$(LD) /dll /out:newton.dll newton.obj
+newton.dll: newton.o
+	$(CC) -shared $@ newton.o
 
 clean:
-	del newton.obj newton.dll
+	rm newton.o newton.dll
