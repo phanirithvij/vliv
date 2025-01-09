@@ -116,7 +116,7 @@ AddTileInfo(int x, int y, int sx, int sy, int sw, int sh, int dx, int dy) {
     ++ntileinfo;
 }
 
-void LoadTile(HDC hdc, unsigned int x, unsigned int y);
+static void LoadTile(HDC hdc, unsigned int x, unsigned int y);
 
 static BOOL InitJoystick(HWND hWnd) {
 	if (joyGetNumDevs()) {
@@ -865,7 +865,7 @@ typedef WINUSERAPI BOOL (WINAPI * SetLayeredWindowAttributesF)(HWND, COLORREF,	B
 #if !defined(LWA_ALPHA)
 #  define LWA_ALPHA     0x00000002
 #endif /* LWA_ALPHA */
-void ScrollWithOffset(HWND hwnd, int dx, int dy);
+static void ScrollWithOffset(HWND hwnd, int dx, int dy);
 
 #define JOYSPEED 5
 
