@@ -244,6 +244,7 @@ static void ClearImage() {
 }
 
 static TCHAR* SubFileTypeNames[4];
+HMODULE languageInst;
 
 static void InitFileTypeNames() {
     int readbytes;
@@ -396,6 +397,7 @@ static BOOL HandleMouseWheel(short zDelta) {
 }
 
 static BOOL fullscreen = FALSE;
+
 void
 SetDirectory(unsigned int which) {
     FreeTileManager();

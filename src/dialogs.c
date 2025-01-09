@@ -221,6 +221,9 @@ BOOL CenterDialog (HWND hwndChild, HWND hwndParent) {
    return SetWindowPos (hwndChild, 0, xNew, yNew, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 }
 
+HWND abortDialog;
+BOOL bPrint;
+
 INT_PTR AbortDialogProc(HWND hdlg, UINT message, WPARAM wParam, LPARAM lParam) { 
     switch (message) { 
     case WM_INITDIALOG: 

@@ -103,7 +103,7 @@ typedef struct {
 #define MYFREE(data) HeapFree(GetProcessHeap(), 0, data);
 #define MYREALLOC(data, size) HeapReAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, data, size);
 
-HMODULE languageInst;
+extern HMODULE languageInst;
 
 VLIV_EXPORT(void) ShowLastError(LPTSTR lpszFunction);
 

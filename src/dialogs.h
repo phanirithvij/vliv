@@ -14,7 +14,7 @@ void CleanupURLControl();
 BOOL checkLicense();
 BOOL CenterDialog (HWND hwndChild, HWND hwndParent);
 
-HWND abortDialog;
-BOOL bPrint;
+extern HWND abortDialog;
+extern BOOL bPrint;
 
 #endif
