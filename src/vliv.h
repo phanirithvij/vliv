@@ -9,7 +9,9 @@
 #define VLIV_EXPORT(type) type
 #define VLIV_IMPORT(type) type
 
-typedef BOOL (*ACCEPTF)(const unsigned char* buffer, unsigned int size);
+struct Image;
+
+typedef BOOL (*ACCEPTF)(const unsigned char* buffer, long unsigned int size);
 typedef const char* (*GETDESCRIPTIONF)();
 typedef const char* (*GETEXTENSIONF)();
 typedef BOOL (*OPENF)(struct Image* image, const TCHAR* name);

@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-static BOOL AcceptNEWTONImage(const unsigned char* buffer, unsigned int size) { return FALSE; }
+static BOOL AcceptNEWTONImage(const unsigned char* buffer, long unsigned int size) { return FALSE; }
 const char* GetNEWTONDescription() { return "Newton Images"; }
 const char* GetNEWTONExtension() { return "*.new"; }
 

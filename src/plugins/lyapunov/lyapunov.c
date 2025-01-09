@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-static BOOL AcceptLYAPUNOVImage(const unsigned char* buffer, unsigned int size) { 
+static BOOL AcceptLYAPUNOVImage(const unsigned char* buffer, long unsigned int size) { 
   return FALSE; 
 }
 

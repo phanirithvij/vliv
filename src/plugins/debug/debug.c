@@ -2,7 +2,7 @@
 
 #include <strsafe.h>
 
-static BOOL AcceptDEBUGImage(const unsigned char* buffer, unsigned int size) { return FALSE; }
+static BOOL AcceptDEBUGImage(const unsigned char* buffer, long unsigned int size) { return FALSE; }
 const char* GetDEBUGDescription() { return "Debug Images"; }
 const char* GetDEBUGExtension() { return "*.dbg"; }
 

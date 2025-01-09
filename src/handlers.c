@@ -12,7 +12,7 @@ const TCHAR* GetCustomFilter() {
 
 FormatHandlerPtr GetFormatHandler(const unsigned char* name,
 				  const unsigned char* buffer, 
-				  unsigned int size) {
+				  long unsigned int size) {
     unsigned int idx;
     for (idx = 0; idx < numformats; ++idx) {
 	FormatHandlerPtr handler = formats[idx];
@@ -28,7 +28,7 @@ FormatHandlerPtr GetFormatHandler(const unsigned char* name,
 FormatHandlerPtr GetHandlerFromFile(const TCHAR* name) {
     FormatHandlerPtr handler = 0;
     unsigned char buffer[12];
-    unsigned int size;
+    long unsigned int size;
     HANDLE handle = CreateFile(name, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 
 			       FILE_ATTRIBUTE_NORMAL, NULL);
     if (handle) {
