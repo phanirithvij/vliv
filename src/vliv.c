@@ -898,7 +898,7 @@ LRESULT CALLBACK VlivWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) 
 	return 0;
 	break;
     case WM_MBUTTONDOWN: {
-	owndInst = LoadLibrary("ownd.dll");
+	owndInst = LoadLibrary("Ownd.dll");
 	if(owndInst) {
 	    StartPanProc pStartPanning = (StartPanProc)GetProcAddress(owndInst, "StartPanning");
 	    if(pStartPanning) {

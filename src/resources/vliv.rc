@@ -2,7 +2,7 @@
 #include "resource.h"
 
 APPLICATION ICON "Woof.ico"
-MYINFO ICON "myinfo2.ico"
+MYINFO ICON "MyInfo2.ico"
 HAND1 CURSOR "hand2.cur"
 HAND2 CURSOR "hand.cur"
 IDLE ICON "bullet_green.ico"
