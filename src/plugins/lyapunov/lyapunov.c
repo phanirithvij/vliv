@@ -1,6 +1,7 @@
 #include <lyapunov.h>
 
 #include <stdio.h>
+#include <math.h>
 
 static BOOL AcceptLYAPUNOVImage(const unsigned char* buffer, long unsigned int size) { 
   return FALSE; 
